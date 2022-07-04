@@ -26,6 +26,18 @@ public class ToDoServlet extends HttpServlet {
         ToDoItem toDoItem = new ToDoItem(item, Instant.now());
         toDoList.add(toDoItem);
 
+        req.setAttribute("toDoList", toDoList);
+        req.getRequestDispatcher("/jsp/index.jsp").forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String item = req.getParameter("item");
+        System.out.println(item);
+        resp.setContentType("text/html");
+
+        ToDoItem toDoItem = new ToDoItem(item, Instant.now());
+        toDoList.add(toDoItem);
 
         req.setAttribute("toDoList", toDoList);
         req.getRequestDispatcher("/jsp/index.jsp").forward(req, resp);
