@@ -1,22 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" isELIgnored="false"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<html>
+ <%@page import="java.util.List"%>
+ <%@page import="java.util.ArrayList"%>
+ <%@page import="com.github.vlad.netetskyi.model.ToDoItem"%>
+<html
    <body>
       <form action = "ToDoServlet" method = "GET">
          New item: <input type = "text" name = "item" />
-         <input type = "submit" value = "Submit" />
+         <input type = "submit" value = "Add" />
       </form>
-		<tr>
-			<th>Name</th>
-			<th>createdAt</th>
-		</tr>
-		<c:forEach var="toDoItem" items="${toDoList }">
-			<tr>
-				<td>${toDoItem.title }</td>
-				<td>${toDoItem.createdAt }</td>
-			</tr>
-		</c:forEach>
-	</table>
+      <table border="1" cellpadding="2" cellspacing="2">
+      <tr>
+      			<th>Name</th>
+      			<th>Created at</th>
+      		</tr>
+		<%
+          ArrayList<ToDoItem> toDoList=(ArrayList<ToDoItem>) request.getAttribute("toDoList");
+          for (ToDoItem item: toDoList) {
+        %>
+          <tr>
+            <td><%=item.title()%></td>
+            <td><%=item.createdAt()%></td>
+           </tr>
+        <%}%>
+        </table>
 </body>
 </html>
