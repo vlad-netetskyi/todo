@@ -3,7 +3,7 @@
  <%@page import="com.github.vlad.netetskyi.model.ToDoItem"%>
 <html
    <body>
-      <form action = "ToDoServlet" method = "GET">
+      <form action = "ToDoServlet" method = "POST">
          New item: <input type = "text" name = "item" />
          <input type = "submit" value = "Add" />
       </form>
